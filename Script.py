@@ -20,8 +20,7 @@ class script(object):
 - <b>MORE THAT 30K USERS WILL SEE YOUR ADS❤️‍🔥<b>
 
 - <b>@TrockersLinks<b>"""
-<b>DEVS:</b>
-- <a href=https://t.me/TeamEvamaria>Team Eva Maria</a>"""
+
     MANUELFILTER_TXT = """Help: <b>Filters</b>
 
 - Filter is the feature were users can set automated replies for a particular keyword and EvaMaria will respond whenever a keyword is found the message
