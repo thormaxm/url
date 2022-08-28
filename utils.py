@@ -375,3 +375,21 @@ def humanbytes(size):
         size /= power
         n += 1
     return str(round(size, 2)) + " " + Dic_powerN[n] + 'B'
+
+async def get_shortlink(link):
+    https = link.split(":")[0]
+    if "http" == https:
+        https = "https"
+        link = link.replace("http", https)
+    url = f'https://shorturllink.in/api'
+    params = {'api': '2af116adaa4d4241d3e5bbad1dc919bad0b8b9b1',
+              'url': link,
+              }
+
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url, params=params, raise_for_status=True, ssl=False) as response:
+            data = await response.json()
+            if data["status"] == "success":
+                return data['shortenedUrl']
+            else:
+                return f"Error: {data['message']}"
