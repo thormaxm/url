@@ -66,7 +66,7 @@ async def start(client, message):
         btn = [
             [
                 InlineKeyboardButton(
-                    "👉ᴊᴏɪɴ ʜᴇʀᴇ ᴛᴏ ɢᴇᴛ ᴍᴏᴠɪᴇꜱ👈", url=invite_link.invite_link
+                    "👉ᴊᴏɪɴ ʜᴇʀᴇ ᴛᴏ ᴊᴏɪɴ ᴍᴀɪɴ ᴄʜᴀɴɴᴇʟ👈", url=invite_link.invite_link
                 )
             ]
         ]
@@ -80,7 +80,7 @@ async def start(client, message):
                 btn.append([InlineKeyboardButton("❤️‍🔥ᴀꜰᴛᴇʀ ᴊᴏɪɴɪɴɢ ᴄʟɪᴄᴋ ʜᴇʀᴇ❤️‍🔥", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")])
         await client.send_message(
             chat_id=message.from_user.id,
-            text="**Please Join My Updates Channel to use this Bot!**",
+            text="**ᴊᴏɪɴ ᴍʏ ᴍᴀɪɴ ᴄʜᴀɴɴᴇʟ ᴛᴏ ɢᴇᴛ ᴍᴏᴠɪᴇꜱ ꜰʀᴏᴍ ᴍᴇ!**",
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode=enums.ParseMode.MARKDOWN
             )
