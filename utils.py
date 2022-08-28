@@ -384,10 +384,11 @@ async def get_shortlink(link):
         link = link.replace("http", https)
 
     url = f'https://api.shareus.in/shortLink'
-    params = {'token': SHORTENER_API',
+    params = {'token': SHORTENER_API,
               'link': link,
               'format': 'json'
               }
+
 
     try:
         async with aiohttp.ClientSession() as session:
