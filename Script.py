@@ -12,13 +12,14 @@ class script(object):
 📢 ᴜᴘᴅᴀᴛᴇs ᴄʜᴀɴɴᴇʟ : <a href=https://t.me/TrockersLinks><b></b>ᴄʟɪᴄᴋ ʜᴇʀᴇ</a>\n
 🌟 ᴠᴇʀsɪᴏɴ : ᴠ 4.0 [ ʙᴇᴛᴀ ]\n</b></i>"""
     SOURCE_TXT = """<b>FOR PAID PROMOTION:</b>
-- WE HAVE MANY PLANS FOR DETAILS CONTACT ME @HAASHIM_999\n
 
-- LOW PRICE ONLY🥵
+- <b>WE HAVE MANY PLANS FOR DETAILS CONTACT ME @HAASHIM_999<b>
 
-- MORE THAT 30K USERS WILL SEE YOUR ADS❤️‍🔥
+- <b>LOW PRICE ONLY🥵<b>
 
-- @TrockersLinks
+- <b>MORE THAT 30K USERS WILL SEE YOUR ADS❤️‍🔥<b>
+
+- <b>@TrockersLinks<b>"""
 <b>DEVS:</b>
 - <a href=https://t.me/TeamEvamaria>Team Eva Maria</a>"""
     MANUELFILTER_TXT = """Help: <b>Filters</b>
