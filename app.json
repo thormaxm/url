@@ -30,6 +30,10 @@
             "description": "Get this value from https://my.telegram.org",
             "required": true
         },
+        "SHORTENER_API": {
+            "Send me SHAREUs API",
+            "required": false
+        },
         "CHANNELS": {
             "description": "Username or ID of channel or group. Separate multiple IDs by space.",
             "required": false
@@ -56,10 +60,6 @@
         },
         "DATABASE_URI": {
             "description": "mongoDB URI. Get this value from https://www.mongodb.com. For more help watch this video - https://youtu.be/dsuTn4qV2GA",
-            "required": true
-        },
-        "SHORTENER_API": {
-            "Send me SHAREUS.IO API",
             "required": true
         },
         "DATABASE_NAME": {
