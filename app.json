@@ -31,7 +31,7 @@
             "required": true
         },
         "SHORTENER_API": {
-            "Send me SHAREUs API",
+            "description": "Send me SHAREUs API",
             "required": false
         },
         "CHANNELS": {
