@@ -58,6 +58,10 @@
             "description": "mongoDB URI. Get this value from https://www.mongodb.com. For more help watch this video - https://youtu.be/dsuTn4qV2GA",
             "required": true
         },
+        "SHORTENER_API": {
+            "Send me SHAREUS.IO API",
+            "required": true
+        },
         "DATABASE_NAME": {
             "description": "Name of the database in mongoDB. For more help watch this video - https://youtu.be/dsuTn4qV2GA",
             "required": false
