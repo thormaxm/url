@@ -141,7 +141,7 @@ async def advantage_spoll_choker(bot, query):
             k = (movie, files, offset, total_results)
             await auto_filter(bot, query, k)
         else:
-            k = await query.message.edit('This Movie Not Found In DataBase')
+            k = await query.message.edit("<b>💌 ᴛʜɪs ᴍᴏᴠɪᴇ ɪs ɴᴏᴛ ʏᴇᴛ ʀᴇʟᴇᴀsᴇᴅ ᴏʀ ᴀᴅᴅᴇᴅ ᴛᴏ ᴍʏ ᴅᴀᴛᴀʙᴀsᴇ 💌</b>\n› <a href=https://t.me/TrockersLinks/63><b>ᴄʜᴇᴄᴋ ɪɴ ᴛʜɪꜱ ᴄʜᴀɴɴᴇʟ</b></a>", disable_web_page_preview=True)
             await asyncio.sleep(10)
             await k.delete()
 
@@ -536,7 +536,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "stats":
         await query.answer("You clicked Status")
         buttons = [[
-            InlineKeyboardButton('👀ᴍᴀɪɴ ᴍᴇɴᴜ👀', callback_data='start'),
+            InlineKeyboardButton('👀ᴍᴀɪɴ ᴍᴇɴᴜ👀', callback_data='about'),
             InlineKeyboardButton('♻️ʀᴇꜰʀᴇꜱʜ ɴᴏᴡ♻️', callback_data='rfrsh')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -555,7 +555,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "rfrsh":
         await query.answer("Refreshing TrockersLinks DataBase")
         buttons = [[
-            InlineKeyboardButton('👀ᴍᴀɪɴ ᴍᴇɴᴜ👀', callback_data='start'),
+            InlineKeyboardButton('👀ᴍᴀɪɴ ᴍᴇɴᴜ👀', callback_data='about'),
             InlineKeyboardButton('♻️ʀᴇꜰʀᴇꜱʜ ɴᴏᴡ♻️', callback_data='rfrsh')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
