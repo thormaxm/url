@@ -14,7 +14,7 @@ from database.users_chats_db import db
 from bs4 import BeautifulSoup
 import requests
 import aiohttp
-from shortzy import Shortzy
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
@@ -465,7 +465,7 @@ async def get_shortlink(link):
         https = "https"
         link = link.replace("http", https)
     url = f'https://link.tnlink.in/api'
-    params = {'8a67ddab1eee04927475f39f714e01211aea76ed': SHORTENER_API,
+    params = {'api': SHORTENER_API,
               'url': link,
               }
 
