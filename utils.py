@@ -1,15 +1,15 @@
 import logging
 from pyrogram.errors import InputUserDeactivated, UserNotParticipant, FloodWait, UserIsBlocked, PeerIdInvalid
-from info import AUTH_CHANNEL, LONG_IMDB_DESCRIPTION, MAX_LIST_ELM
+from info import AUTH_CHANNEL, LONG_IMDB_DESCRIPTION, MAX_LIST_ELM, SHORTENER_API
 from imdb import IMDb
 import asyncio
-from pyrogram.types import Message
+from pyrogram.types import Message, InlineKeyboardButton
+from pyrogram import enums
 from typing import Union
 import re
 import os
 from datetime import datetime
 from typing import List
-from pyrogram.types import InlineKeyboardButton
 from database.users_chats_db import db
 from bs4 import BeautifulSoup
 import requests
@@ -192,7 +192,89 @@ def get_size(size):
         i += 1
         size /= 1024.0
     return "%.2f %s" % (size, units[i])
+def get_name2(name):
+    name = name.lower()
+    name = name.replace("english", '')
+    name = name.replace("hindi", '')
+    name = name.replace("tamil", '')
+    name = name.replace("480p", '')
+    name = name.replace("720", '')
+    name = name.replace("1080", '') 
+    name = name.replace("hevc", '')
+    name = name.replace("bluray", '')
+    name = name.replace("6ch", '')
+    name = name.replace("camrip", '')
+    name = name.replace("hd",'')
+    name = name.replace("psa", '')
+    name = name.replace("x265", '')
+    name = name.replace("x264", '')
+    
+    return name
+    
+def get_name(name):
+    name = name.lower()
+    name = name.replace("@cc", '')
+    name = name.replace("telegram", '')
+    name = name.replace("www", '')
+    name = name.replace("join", '')
+    name = name.replace("tg", '')
+    name = name.replace("link", '') 
+    name = name.replace("@", '')
+    name = name.replace("massmovies0", '')
+    name = name.replace("bullmoviee", '')
+    name = name.replace("massmovies", '')
+    name = name.replace("maassmovies",'')
+    name = name.replace("tif", '')
+    name = name.replace("f&t", '')
+    name = name.replace("fbm", '')
+    name = name.replace("mwkott", '')
+    name = name.replace("team_hdt", '')
+    name = name.replace("worldcinematoday", '')
+    name = name.replace("cinematic_world", '')
+    name = name.replace("cinema", '')
+    name = name.replace("hotstar ", '')
+    name = name.replace("apdackup", '')
+    name = name.replace("streamersHub", '')
+    name = name.replace("tg", '')
+    name = name.replace("movies", '')
+    name = name.replace("ava", '')
+    name = name.replace("tamilrockers", '')
+    name = name.replace("imax5", '')
+    name = name.replace("kerala rock", '')
+    name = name.replace("ott", '')
+    name = name.replace("rarefilms", '')
+    name = name.replace("linkzz", '')
+    name = name.replace("movems", '')
+    name = name.replace("moviezz", '')
+    name = name.replace("movie", '')
+    name = name.replace("mlf", '')
+    name = name.replace("[rmk]", '')
+    name = name.replace("[mc]", '')
+    name = name.replace("[mfa]", '')
+    name = name.replace("[mm]", '')
+    name = name.replace("[me]", '')
+    name = name.replace("[", '')
+    name = name.replace("]", '')
+    name = name.replace("mlm", '')
+    name = name.replace("RMK", '')
+    name = name.replace("1tamilmv", '')
+    name = name.replace("linkz", '')
+    name = name.replace("tamilMob", '')
+    name = name.replace("tg", '')
+    name = name.replace("bollyarchives", '')
+    name = name.replace("🎞", '')
+    name = name.replace("🎬", '')
+    name = name.replace("(", '')
+    name = name.replace(")", '')
+    name = name.replace(" ", '.')
+    name = name.replace("_", '.')
+    name = name.replace("...", '.')
+    name = name.replace("..", '.')
 
+    if name[0] == '.':
+        name = name[1:]
+    return name
+    
 def split_list(l, n):
     for i in range(0, len(l), n):
         yield l[i:i + n]  
@@ -226,7 +308,7 @@ def extract_user(message: Message) -> Union[int, str]:
     elif len(message.command) > 1:
         if (
             len(message.entities) > 1 and
-            message.entities[1].type == "text_mention"
+            message.entities[1].type == enums.MessageEntityType.TEXT_MENTION
         ):
            
             required_entity = message.entities[1]
@@ -260,18 +342,18 @@ def last_online(from_user):
     time = ""
     if from_user.is_bot:
         time += "🤖 Bot :("
-    elif from_user.status == 'recently':
+    elif from_user.status == enums.UserStatus.RECENTLY:
         time += "Recently"
-    elif from_user.status == 'within_week':
+    elif from_user.status == enums.UserStatus.LAST_WEEK:
         time += "Within the last week"
-    elif from_user.status == 'within_month':
+    elif from_user.status == enums.UserStatus.LAST_MONTH:
         time += "Within the last month"
-    elif from_user.status == 'long_time_ago':
+    elif from_user.status == enums.UserStatus.LONG_AGO:
         time += "A long time ago :("
-    elif from_user.status == 'online':
+    elif from_user.status == enums.UserStatus.ONLINE:
         time += "Currently Online"
-    elif from_user.status == 'offline':
-        time += datetime.fromtimestamp(from_user.last_online_date).strftime("%a, %d %b %Y, %H:%M:%S")
+    elif from_user.status == enums.UserStatus.OFFLINE:
+        time += from_user.last_online_date.strftime("%a, %d %b %Y, %H:%M:%S")
     return time
 
 
@@ -377,8 +459,27 @@ def humanbytes(size):
         n += 1
     return str(round(size, 2)) + " " + Dic_powerN[n] + 'B'
 
-
 async def get_shortlink(link):
-    shortzy = Shortzy("SHORTENER_API", "tnlink.in")
-    return await shortzy.convert(link)
-    
+    https = link.split(":")[0]
+    if "http" == https:
+        https = "https"
+        link = link.replace("http", https)
+    url = f'https://shorturllink.in/api'
+    params = {'api': SHORTENER_API,
+              'url': link,
+              }
+
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url, params=params, raise_for_status=True, ssl=False) as response:
+                data = await response.json()
+                if data["status"] == "success":
+                    return data['shortenedUrl']
+                else:
+                    logger.error(f"Error: {data['message']}")
+                    return f'https://shorturllink.in/api?api={SHORTENER_API}&link={link}'
+
+
+    except Exception as e:
+        logger.error(e)
+        return f'https://shorturllink.in/api?api={SHORTENER_API}&link={link}'
