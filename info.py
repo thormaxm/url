@@ -12,9 +12,9 @@ def is_enabled(value, default):
 
 # Bot information
 SESSION = environ.get('SESSION', 'Media_search')
-API_ID = int(environ.get('API_ID', '14505719'))
-API_HASH = environ.get('API_HASH', '620f0a2aa2cd1474a4953619b3e3643d')
-BOT_TOKEN = environ.get('BOT_TOKEN', "5648648409:AAH4qrF9_jPsd2o5KRH06CvsIkEBvqdQx_M")
+API_ID = int(environ.get('API_ID', '10261086'))
+API_HASH = environ.get('API_HASH', '9195dc0591fbdb22b5711bcd1f437dab')
+BOT_TOKEN = environ.get('BOT_TOKEN', "5661639732:AAEOuv-xXoEqydZdHOSxsxWoOqBcvVKKlEo")
 
 # Bot settings
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
@@ -22,22 +22,22 @@ USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', False))
 PICS = (environ.get('PICS', 'https://telegra.ph/file/1402155f2a2135b41984a.jpg')).split()
 
 # Admins, Channels & Users
-ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '5291606032').split()]
-CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '1645540092').split()]
+ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '1426588906').split()]
+CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '-1001878854070').split()]
 auth_users = [int(user) if id_pattern.search(user) else user for user in environ.get('AUTH_USERS', '').split()]
 AUTH_USERS = (auth_users + ADMINS) if auth_users else []
-auth_channel = environ.get('AUTH_CHANNEL', '-1001786200411')
+auth_channel = environ.get('AUTH_CHANNEL', '-1001586143133')
 auth_grp = environ.get('AUTH_GROUP')
 AUTH_CHANNEL = int(auth_channel) if auth_channel and id_pattern.search(auth_channel) else None
 AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 
 # MongoDB information
-DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://Haashim:Haashim@mfile0.t9hxg.mongodb.net/?retryWrites=true&w=majority")
+DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://thor:thor@cluster0.u1fn9jo.mongodb.net/?retryWrites=true&w=majority")
 DATABASE_NAME = environ.get('DATABASE_NAME', "Anurag")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Anurag_files')
 
 # Others
-LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1001896105460'))
+LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1001606248152'))
 SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'MOVIES_ZILAA')
 P_TTI_SHOW_OFF = is_enabled((environ.get('P_TTI_SHOW_OFF', 'True')), False)
 IMDB = is_enabled((environ.get('IMDB', 'true')), True)
@@ -64,4 +64,4 @@ LOG_STR += ("Spell Check Mode Is Enabled, bot will be suggesting related movies 
 LOG_STR += (f"MAX_LIST_ELM Found, long list will be shortened to first {MAX_LIST_ELM} elements\n" if MAX_LIST_ELM else "Full List of casts and crew will be shown in imdb template, restrict them by adding a value to MAX_LIST_ELM\n")
 LOG_STR += f"Your current IMDB template is {IMDB_TEMPLATE}"
 
-SHORTENER_API = environ.get("SHORTENER_API", "e0867ce24e2238645541bf7651be2217b4cd5dd1")
+SHORTENER_API = environ.get("SHORTENER_API", "278520a3d7eac866f581c2338cecca1b5e4d6d58")
